@@ -2,6 +2,9 @@
 
 {% block content %}
   <h1>TODO list</h1>
+    <a href="{% url 'todo:task-create' %}" class="btn btn-primary link-to-page">
+      Add task
+    </a>
   <br>
 
   <ul>
@@ -20,6 +23,8 @@
           {% for tag in task.tags.all %}
             {{ tag.name }}
           {% endfor %}
+        <a href="{% url 'todo:task-update' pk=task.pk %}">Update</a>
+        <a href="{% url 'todo:task-delete' pk=task.pk %}">Delete</a>
         </p>
       </li>
       <hr>
