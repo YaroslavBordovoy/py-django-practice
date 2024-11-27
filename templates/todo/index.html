@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+  <h1>TODO list</h1>
+  <br>
+
+  <ul>
+    {% for task in task_list %}
+      <li>
+        <p>{{ task.content }} {{ task.is_done }}</p><br>
+        <p>
+          Created: {{ task.created_at|date:"Y-m-d H:i:s" }}
+          {% if task.deadline %}
+            Deadline: {{ task.deadline }}
+          {% endif %}
+        </p>
+        <br>
+        <p>
+          Tags:
+          {% for tag in task.tags.all %}
+            {{ tag.name }}
+          {% endfor %}
+        </p>
+      </li>
+      <hr>
+    {% endfor %}
+  </ul>
+{% endblock %}

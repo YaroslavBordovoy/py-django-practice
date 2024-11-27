@@ -1,9 +1,10 @@
 from django.urls import path
 
-from todo.views import index
+from todo.views import IndexView, TagView
 
 app_name = "todo"
 
 urlpatterns = [
-    path("", index, name="index"),
+    path("", IndexView.as_view(), name="index"),
+    path("tags/", TagView.as_view(), name="tag"),
 ]
