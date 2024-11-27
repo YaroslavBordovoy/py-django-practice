@@ -8,6 +8,9 @@ class Task(models.Model):
     is_done = models.BooleanField(default=False)
     tags = models.ManyToManyField(to="Tag", related_name="tasks")
 
+    class Meta:
+        ordering = ("is_done", "-created_at",)
+
     def __str__(self) -> str:
         return f"Task: {self.content[:50]} ()"
 
