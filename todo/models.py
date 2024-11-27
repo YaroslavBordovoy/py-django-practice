@@ -19,7 +19,7 @@ class Task(models.Model):
     def __str__(self) -> str:
         return (
             f"Task: {self.content[:50]} "
-                f"(created at: {self.created_at}, completed: {self.is_done})"
+            f"(created at: {self.created_at}, completed: {self.is_done})"
         )
 
 
