@@ -6,6 +6,7 @@ class Task(models.Model):
         (False, "Not done"),
         (True, "Done"),
     ]
+
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField(null=True, blank=True)
@@ -23,7 +24,10 @@ class Task(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        ordering = ("name", )
 
     def __str__(self) -> str:
         return self.name

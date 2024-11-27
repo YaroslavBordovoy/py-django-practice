@@ -27,12 +27,6 @@ class IndexView(generic.ListView):
         return redirect("todo:index")
 
 
-class TagView(generic.ListView):
-    model = Tag
-    queryset = Tag.objects.prefetch_related("tasks")
-    template_name = "todo/tag_list.html"
-
-
 class TaskCreateView(generic.CreateView):
     model = Task
     form_class = TaskForm
@@ -48,6 +42,12 @@ class TaskUpdateView(generic.UpdateView):
 class TaskDeleteView(generic.DeleteView):
     model = Task
     success_url = reverse_lazy("todo:index")
+
+
+class TagListView(generic.ListView):
+    model = Tag
+    queryset = Tag.objects.prefetch_related("tasks")
+    template_name = "todo/tag_list.html"
 
 
 class TagCreateView(generic.CreateView):
